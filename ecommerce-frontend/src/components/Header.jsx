@@ -1,15 +1,8 @@
 import { useAuth } from '../context/AuthContext'
+import SearchBar from './SearchBar'
 
 const Header = ({ search, setSearch, category, setCategory, onShowLogin, onShowRegister }) => {
   const { user, logout } = useAuth()
-
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value)
-  }
-
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value)
-  }
 
   const handleLogout = () => {
     logout()
@@ -23,27 +16,12 @@ const Header = ({ search, setSearch, category, setCategory, onShowLogin, onShowR
             🛍️ ShopEasy
           </div>
           
-          <div className="search-filter">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={handleSearchChange}
-              className="search-input"
-            />
-            <select 
-              value={category} 
-              onChange={handleCategoryChange}
-              className="category-select"
-            >
-              <option value="">All Categories</option>
-              <option value="electronics">Electronics</option>
-              <option value="fashion">Fashion</option>
-              <option value="home">Home & Kitchen</option>
-              <option value="books">Books</option>
-              <option value="sports">Sports</option>
-            </select>
-          </div>
+          <SearchBar 
+            search={search}
+            setSearch={setSearch}
+            category={category}
+            setCategory={setCategory}
+          />
           
           <div className="header-actions">
             {user ? (
